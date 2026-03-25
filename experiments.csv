@@ -1,1 +1,3 @@
 Run_ID,Date,Model_Change,Params,Quantization,Seq_Len,Batch_Size,LR,Train_Time,Val_Loss,Val_BPB,Model_Size_MB,Notes
+baseline_clean,2026-03-25 20:05:17,baseline,17059912,int8+zlib,256,2048,default,633,3.2620,1.9319,14.91,full run no timeout
+baseline_10min_clean,2026-03-25,Baseline,17M,int8,256,2048,default,600s,3.2754,1.9399,14.8MB,Stable baseline run

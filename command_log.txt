@@ -142,3 +142,909 @@ GPU: NVIDIA GeForce RTX 3070 Ti Laptop GPU
 (.venv) ntejha@fedora:~/Main_Projects/parameter-golf$ touch experiments.csv
 (.venv) ntejha@fedora:~/Main_Projects/parameter-golf$ echo "Run_ID,Date,Model_Change,Params,Quantization,Seq_Len,Batch_Size,LR,Train_Time,Val_Loss,Val_BPB,Model_Size_MB,Notes" >> experiments.csv
 
+------------------------
+[STEP] DATA DOWNLOAD
+Traceback (most recent call last):
+  File "/home/ntejha/Main_Projects/parameter-golf/data/cached_challenge_fineweb.py", line 7, in <module>
+    from huggingface_hub import hf_hub_download
+ModuleNotFoundError: No module named 'huggingface_hub'
+Collecting huggingface-hub
+  Downloading huggingface_hub-1.7.2-py3-none-any.whl.metadata (13 kB)
+Collecting datasets
+  Downloading datasets-4.8.4-py3-none-any.whl.metadata (19 kB)
+Collecting tqdm
+  Downloading tqdm-4.67.3-py3-none-any.whl.metadata (57 kB)
+Collecting sentencepiece
+  Downloading sentencepiece-0.2.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+Requirement already satisfied: filelock>=3.10.0 in ./.venv/lib/python3.12/site-packages (from huggingface-hub) (3.25.2)
+Requirement already satisfied: fsspec>=2023.5.0 in ./.venv/lib/python3.12/site-packages (from huggingface-hub) (2026.2.0)
+Collecting hf-xet<2.0.0,>=1.4.2 (from huggingface-hub)
+  Downloading hf_xet-1.4.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting httpx<1,>=0.23.0 (from huggingface-hub)
+  Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting packaging>=20.9 (from huggingface-hub)
+  Downloading packaging-26.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pyyaml>=5.1 (from huggingface-hub)
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting typer (from huggingface-hub)
+  Downloading typer-0.24.1-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: typing-extensions>=4.1.0 in ./.venv/lib/python3.12/site-packages (from huggingface-hub) (4.15.0)
+Collecting anyio (from httpx<1,>=0.23.0->huggingface-hub)
+  Downloading anyio-4.13.0-py3-none-any.whl.metadata (4.5 kB)
+Collecting certifi (from httpx<1,>=0.23.0->huggingface-hub)
+  Downloading certifi-2026.2.25-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->huggingface-hub)
+  Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting idna (from httpx<1,>=0.23.0->huggingface-hub)
+  Using cached idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.23.0->huggingface-hub)
+  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Requirement already satisfied: numpy>=1.17 in ./.venv/lib/python3.12/site-packages (from datasets) (2.4.3)
+Collecting pyarrow>=21.0.0 (from datasets)
+  Downloading pyarrow-23.0.1-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.1 kB)
+Collecting dill<0.4.2,>=0.3.0 (from datasets)
+  Downloading dill-0.4.1-py3-none-any.whl.metadata (10 kB)
+Collecting pandas (from datasets)
+  Downloading pandas-3.0.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+Collecting requests>=2.32.2 (from datasets)
+  Using cached requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting xxhash (from datasets)
+  Using cached xxhash-3.6.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (13 kB)
+Collecting multiprocess<0.70.20 (from datasets)
+  Downloading multiprocess-0.70.19-py312-none-any.whl.metadata (7.5 kB)
+Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Using cached aiohttp-3.13.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Using cached aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.4.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Using cached aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting attrs>=17.3.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Using cached frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (20 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Using cached multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting propcache>=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Using cached propcache-0.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (13 kB)
+Collecting yarl<2.0,>=1.17.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2026.2.0,>=2023.1.0->datasets)
+  Downloading yarl-1.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.32.2->datasets)
+  Downloading charset_normalizer-3.4.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting urllib3<3,>=1.21.1 (from requests>=2.32.2->datasets)
+  Using cached urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+Collecting python-dateutil>=2.8.2 (from pandas->datasets)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas->datasets)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting click>=8.2.1 (from typer->huggingface-hub)
+  Using cached click-8.3.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting shellingham>=1.3.0 (from typer->huggingface-hub)
+  Using cached shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting rich>=12.3.0 (from typer->huggingface-hub)
+  Downloading rich-14.3.3-py3-none-any.whl.metadata (18 kB)
+Collecting annotated-doc>=0.0.2 (from typer->huggingface-hub)
+  Using cached annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=12.3.0->typer->huggingface-hub)
+  Downloading markdown_it_py-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=12.3.0->typer->huggingface-hub)
+  Using cached pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=12.3.0->typer->huggingface-hub)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading huggingface_hub-1.7.2-py3-none-any.whl (618 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 618.0/618.0 kB 21.3 MB/s  0:00:00
+Downloading hf_xet-1.4.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 26.2 MB/s  0:00:00
+Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading datasets-4.8.4-py3-none-any.whl (526 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 527.0/527.0 kB 17.2 MB/s  0:00:00
+Downloading dill-0.4.1-py3-none-any.whl (120 kB)
+Downloading multiprocess-0.70.19-py312-none-any.whl (150 kB)
+Downloading tqdm-4.67.3-py3-none-any.whl (78 kB)
+Downloading sentencepiece-0.2.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 24.8 MB/s  0:00:00
+Using cached aiohttp-3.13.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.8 MB)
+Using cached multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (256 kB)
+Downloading yarl-1.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (100 kB)
+Using cached aiohappyeyeballs-2.6.1-py3-none-any.whl (15 kB)
+Using cached aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Using cached frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Using cached idna-3.11-py3-none-any.whl (71 kB)
+Downloading packaging-26.0-py3-none-any.whl (74 kB)
+Using cached propcache-0.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+Downloading pyarrow-23.0.1-cp312-cp312-manylinux_2_28_x86_64.whl (47.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.6/47.6 MB 39.7 MB/s  0:00:01
+Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Using cached requests-2.32.5-py3-none-any.whl (64 kB)
+Downloading charset_normalizer-3.4.6-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (207 kB)
+Using cached urllib3-2.6.3-py3-none-any.whl (131 kB)
+Downloading certifi-2026.2.25-py3-none-any.whl (153 kB)
+Downloading anyio-4.13.0-py3-none-any.whl (114 kB)
+Downloading pandas-3.0.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.9/10.9 MB 45.2 MB/s  0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading typer-0.24.1-py3-none-any.whl (56 kB)
+Using cached annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Using cached click-8.3.1-py3-none-any.whl (108 kB)
+Downloading rich-14.3.3-py3-none-any.whl (310 kB)
+Using cached pygments-2.19.2-py3-none-any.whl (1.2 MB)
+Downloading markdown_it_py-4.0.0-py3-none-any.whl (87 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Using cached xxhash-3.6.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (193 kB)
+Installing collected packages: xxhash, urllib3, tqdm, six, shellingham, sentencepiece, pyyaml, pygments, pyarrow, propcache, packaging, multidict, mdurl, idna, hf-xet, h11, frozenlist, dill, click, charset_normalizer, certifi, attrs, annotated-doc, aiohappyeyeballs, yarl, requests, python-dateutil, multiprocess, markdown-it-py, httpcore, anyio, aiosignal, rich, pandas, httpx, aiohttp, typer, huggingface-hub, datasets
+
+Successfully installed aiohappyeyeballs-2.6.1 aiohttp-3.13.3 aiosignal-1.4.0 annotated-doc-0.0.4 anyio-4.13.0 attrs-26.1.0 certifi-2026.2.25 charset_normalizer-3.4.6 click-8.3.1 datasets-4.8.4 dill-0.4.1 frozenlist-1.8.0 h11-0.16.0 hf-xet-1.4.2 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-1.7.2 idna-3.11 markdown-it-py-4.0.0 mdurl-0.1.2 multidict-6.7.1 multiprocess-0.70.19 packaging-26.0 pandas-3.0.1 propcache-0.4.1 pyarrow-23.0.1 pygments-2.19.2 python-dateutil-2.9.0.post0 pyyaml-6.0.3 requests-2.32.5 rich-14.3.3 sentencepiece-0.2.1 shellingham-1.5.4 six-1.17.0 tqdm-4.67.3 typer-0.24.1 urllib3-2.6.3 xxhash-3.6.0 yarl-1.23.0
+------------------------
+[STEP][DATA DOWNLOAD][2026-03-25 16:20:58]
+python3 data/cached_challenge_fineweb.py --variant sp1024 --train-shards 2fineweb_train_000000.bin
+
+[STEP][VERIFY DATASET][2026-03-25 16:25:04]
+ls data/datasets/fineweb10B_sp1024/
+------------------------
+[STEP][VERIFY DATASET][2026-03-25 16:25:15]
+ls data/datasets/fineweb10B_sp1024/
+fineweb_train_000000.bin
+fineweb_train_000001.bin
+fineweb_val_000000.bin
+------------------------
+[STEP][BASELINE TRAIN][2026-03-25 16:26:45]
+RUN_ID=local_baseline TRAIN_BATCH_TOKENS=2048 VAL_BATCH_SIZE=2048 torchrun train_gpt.py
+logs/local_baseline.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:1024 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/ntejha/Main_Projects/parameter-golf/train_gpt.py", line 1126, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/ntejha/Main_Projects/parameter-golf/train_gpt.py", line 946, in main
+[rank0]:     x, y = train_loader.next_batch(args.train_batch_tokens, args.train_seq_len, grad_accum_steps)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/ntejha/Main_Projects/parameter-golf/train_gpt.py", line 492, in next_batch
+[rank0]:     x = local[:-1].reshape(-1, seq_len)
+[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: RuntimeError: shape '[-1, 1024]' is invalid for input of size 256
+[rank0]:[W325 16:26:51.268523847 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+E0325 16:26:52.415000 85286 torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 85340) of binary: /home/ntejha/Main_Projects/parameter-golf/.venv/bin/python3
+Traceback (most recent call last):
+  File "/home/ntejha/Main_Projects/parameter-golf/.venv/bin/torchrun", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/ntejha/Main_Projects/parameter-golf/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ntejha/Main_Projects/parameter-golf/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/home/ntejha/Main_Projects/parameter-golf/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/home/ntejha/Main_Projects/parameter-golf/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ntejha/Main_Projects/parameter-golf/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-03-25_16:26:52
+  host      : fedora
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 85340)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+------------------------
+[STEP][BASELINE TRAIN FIXED][2026-03-25 16:28:35]
+logs/local_baseline_fix.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:0/20000 val_loss:6.9344 val_bpb:4.1069 train_time:0ms step_avg:0.02ms
+step:1/20000 train_loss:6.9348 train_time:83ms step_avg:82.78ms
+step:2/20000 train_loss:19.6077 train_time:168ms step_avg:84.07ms
+step:3/20000 train_loss:18.3286 train_time:255ms step_avg:85.05ms
+step:4/20000 train_loss:15.0124 train_time:344ms step_avg:85.89ms
+step:5/20000 train_loss:11.5214 train_time:430ms step_avg:85.94ms
+step:6/20000 train_loss:8.9601 train_time:514ms step_avg:85.68ms
+step:7/20000 train_loss:8.1490 train_time:600ms step_avg:85.76ms
+step:8/20000 train_loss:7.6446 train_time:688ms step_avg:86.02ms
+step:9/20000 train_loss:7.2599 train_time:774ms step_avg:85.96ms
+step:10/20000 train_loss:7.1292 train_time:861ms step_avg:86.11ms
+step:200/20000 train_loss:4.7468 train_time:16821ms step_avg:84.10ms
+step:400/20000 train_loss:4.9626 train_time:34278ms step_avg:85.69ms
+step:600/20000 train_loss:4.0856 train_time:51632ms step_avg:86.05ms
+step:800/20000 train_loss:3.6916 train_time:69244ms step_avg:86.56ms
+step:1000/20000 train_loss:3.8867 train_time:86672ms step_avg:86.67ms
+step:1000/20000 val_loss:3.9135 val_bpb:2.3178 train_time:86674ms step_avg:86.67ms
+step:1200/20000 train_loss:3.4100 train_time:107023ms step_avg:89.19ms
+step:1400/20000 train_loss:3.8930 train_time:125644ms step_avg:89.75ms
+step:1600/20000 train_loss:3.6377 train_time:145895ms step_avg:91.18ms
+step:1800/20000 train_loss:3.7772 train_time:166541ms step_avg:92.52ms
+step:2000/20000 train_loss:3.5573 train_time:187079ms step_avg:93.54ms
+step:2000/20000 val_loss:3.7079 val_bpb:2.1961 train_time:187080ms step_avg:93.54ms
+step:2200/20000 train_loss:3.6991 train_time:203994ms step_avg:92.72ms
+step:2400/20000 train_loss:3.5537 train_time:221950ms step_avg:92.48ms
+step:2600/20000 train_loss:3.3840 train_time:238786ms step_avg:91.84ms
+step:2800/20000 train_loss:3.5896 train_time:255752ms step_avg:91.34ms
+step:3000/20000 train_loss:3.7154 train_time:273717ms step_avg:91.24ms
+step:3000/20000 val_loss:3.6142 val_bpb:2.1405 train_time:273719ms step_avg:91.24ms
+step:3200/20000 train_loss:3.3137 train_time:290835ms step_avg:90.89ms
+step:3400/20000 train_loss:3.6327 train_time:307692ms step_avg:90.50ms
+step:3600/20000 train_loss:3.4908 train_time:324999ms step_avg:90.28ms
+step:3800/20000 train_loss:3.3078 train_time:342705ms step_avg:90.19ms
+step:4000/20000 train_loss:3.3174 train_time:359643ms step_avg:89.91ms
+step:4000/20000 val_loss:3.5575 val_bpb:2.1070 train_time:359644ms step_avg:89.91ms
+step:4200/20000 train_loss:3.5922 train_time:376152ms step_avg:89.56ms
+step:4400/20000 train_loss:3.8200 train_time:394130ms step_avg:89.57ms
+step:4600/20000 train_loss:3.5212 train_time:412303ms step_avg:89.63ms
+step:4800/20000 train_loss:3.4756 train_time:430566ms step_avg:89.70ms
+step:5000/20000 train_loss:3.4484 train_time:448940ms step_avg:89.79ms
+------------------------
+[STEP][BASELINE TRAIN FINAL][2026-03-25 17:38:53]
+Running baseline with TRAIN_SEQ_LEN=256, TRAIN_BATCH_TOKENS=2048
+logs/local_baseline_final.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/20000 train_loss:6.9348 train_time:123ms step_avg:123.39ms
+step:2/20000 train_loss:19.6077 train_time:247ms step_avg:123.64ms
+step:3/20000 train_loss:18.3286 train_time:381ms step_avg:126.86ms
+step:4/20000 train_loss:15.0124 train_time:543ms step_avg:135.73ms
+step:5/20000 train_loss:11.5214 train_time:683ms step_avg:136.56ms
+step:6/20000 train_loss:8.9601 train_time:824ms step_avg:137.27ms
+step:7/20000 train_loss:8.1490 train_time:954ms step_avg:136.31ms
+step:8/20000 train_loss:7.6446 train_time:1109ms step_avg:138.63ms
+step:9/20000 train_loss:7.2599 train_time:1236ms step_avg:137.32ms
+step:10/20000 train_loss:7.1292 train_time:1367ms step_avg:136.73ms
+step:200/20000 train_loss:4.7603 train_time:17291ms step_avg:86.46ms
+step:400/20000 train_loss:4.9651 train_time:34775ms step_avg:86.94ms
+step:600/20000 train_loss:4.0835 train_time:52194ms step_avg:86.99ms
+step:800/20000 train_loss:3.6924 train_time:69063ms step_avg:86.33ms
+step:1000/20000 train_loss:3.9283 train_time:87017ms step_avg:87.02ms
+step:1200/20000 train_loss:3.4017 train_time:104541ms step_avg:87.12ms
+step:1400/20000 train_loss:3.9559 train_time:122163ms step_avg:87.26ms
+step:1600/20000 train_loss:3.6639 train_time:140022ms step_avg:87.51ms
+step:1800/20000 train_loss:3.7896 train_time:158051ms step_avg:87.81ms
+step:2000/20000 train_loss:3.5837 train_time:176188ms step_avg:88.09ms
+step:2200/20000 train_loss:3.6977 train_time:194574ms step_avg:88.44ms
+step:2400/20000 train_loss:3.5439 train_time:212909ms step_avg:88.71ms
+step:2600/20000 train_loss:3.3754 train_time:232669ms step_avg:89.49ms
+step:2800/20000 train_loss:3.5673 train_time:250328ms step_avg:89.40ms
+step:3000/20000 train_loss:3.7364 train_time:267374ms step_avg:89.12ms
+step:3200/20000 train_loss:3.2612 train_time:284927ms step_avg:89.04ms
+step:3400/20000 train_loss:3.6227 train_time:301922ms step_avg:88.80ms
+step:3600/20000 train_loss:3.5164 train_time:318811ms step_avg:88.56ms
+step:3800/20000 train_loss:3.3351 train_time:336213ms step_avg:88.48ms
+step:4000/20000 train_loss:3.2766 train_time:355222ms step_avg:88.81ms
+step:4200/20000 train_loss:3.6282 train_time:372317ms step_avg:88.65ms
+step:4400/20000 train_loss:3.8699 train_time:389129ms step_avg:88.44ms
+step:4600/20000 train_loss:3.5263 train_time:406034ms step_avg:88.27ms
+step:4800/20000 train_loss:3.4645 train_time:423269ms step_avg:88.18ms
+step:5000/20000 train_loss:3.4413 train_time:442026ms step_avg:88.41ms
+step:5200/20000 train_loss:3.2460 train_time:460175ms step_avg:88.50ms
+step:5400/20000 train_loss:3.4865 train_time:477559ms step_avg:88.44ms
+step:5600/20000 train_loss:3.3405 train_time:496115ms step_avg:88.59ms
+step:5800/20000 train_loss:3.5347 train_time:514485ms step_avg:88.70ms
+step:6000/20000 train_loss:3.2918 train_time:532412ms step_avg:88.74ms
+step:6200/20000 train_loss:3.5245 train_time:549764ms step_avg:88.67ms
+step:6400/20000 train_loss:3.3039 train_time:567064ms step_avg:88.60ms
+step:6600/20000 train_loss:3.1321 train_time:584623ms step_avg:88.58ms
+------------------------
+[STEP][BASELINE STRICT 10MIN][2026-03-25 17:58:31]
+logs/local_baseline_strict.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/20000 train_loss:6.9348 train_time:101ms step_avg:100.54ms
+step:2/20000 train_loss:19.6077 train_time:203ms step_avg:101.28ms
+step:3/20000 train_loss:18.3286 train_time:295ms step_avg:98.17ms
+step:4/20000 train_loss:15.0124 train_time:389ms step_avg:97.17ms
+step:5/20000 train_loss:11.5214 train_time:485ms step_avg:97.04ms
+step:6/20000 train_loss:8.9601 train_time:580ms step_avg:96.60ms
+step:7/20000 train_loss:8.1490 train_time:672ms step_avg:95.99ms
+step:8/20000 train_loss:7.6446 train_time:766ms step_avg:95.80ms
+step:9/20000 train_loss:7.2599 train_time:860ms step_avg:95.52ms
+step:10/20000 train_loss:7.1292 train_time:954ms step_avg:95.35ms
+step:200/20000 train_loss:4.7632 train_time:18530ms step_avg:92.65ms
+step:400/20000 train_loss:4.9527 train_time:35866ms step_avg:89.67ms
+step:600/20000 train_loss:4.0790 train_time:52972ms step_avg:88.29ms
+step:800/20000 train_loss:3.7105 train_time:70207ms step_avg:87.76ms
+step:1000/20000 train_loss:3.9085 train_time:87002ms step_avg:87.00ms
+step:1200/20000 train_loss:3.4315 train_time:103863ms step_avg:86.55ms
+step:1400/20000 train_loss:3.9134 train_time:120797ms step_avg:86.28ms
+step:1600/20000 train_loss:3.6532 train_time:139194ms step_avg:87.00ms
+step:1800/20000 train_loss:3.8242 train_time:156062ms step_avg:86.70ms
+step:2000/20000 train_loss:3.5519 train_time:173001ms step_avg:86.50ms
+step:2200/20000 train_loss:3.7000 train_time:191344ms step_avg:86.97ms
+step:2400/20000 train_loss:3.5681 train_time:210014ms step_avg:87.51ms
+step:2600/20000 train_loss:3.3895 train_time:228441ms step_avg:87.86ms
+step:2800/20000 train_loss:3.5472 train_time:246983ms step_avg:88.21ms
+step:3000/20000 train_loss:3.7078 train_time:265507ms step_avg:88.50ms
+step:3200/20000 train_loss:3.2413 train_time:284026ms step_avg:88.76ms
+step:3400/20000 train_loss:3.6182 train_time:302571ms step_avg:88.99ms
+step:3600/20000 train_loss:3.5301 train_time:321128ms step_avg:89.20ms
+step:3800/20000 train_loss:3.3411 train_time:339761ms step_avg:89.41ms
+step:4000/20000 train_loss:3.3044 train_time:357680ms step_avg:89.42ms
+step:4200/20000 train_loss:3.6005 train_time:374526ms step_avg:89.17ms
+step:4400/20000 train_loss:3.8375 train_time:391834ms step_avg:89.05ms
+step:4600/20000 train_loss:3.5400 train_time:409240ms step_avg:88.97ms
+step:4800/20000 train_loss:3.4484 train_time:426326ms step_avg:88.82ms
+step:5000/20000 train_loss:3.4516 train_time:443313ms step_avg:88.66ms
+step:5200/20000 train_loss:3.2207 train_time:460728ms step_avg:88.60ms
+step:5400/20000 train_loss:3.4786 train_time:477935ms step_avg:88.51ms
+step:5600/20000 train_loss:3.3606 train_time:496056ms step_avg:88.58ms
+step:5800/20000 train_loss:3.5122 train_time:514577ms step_avg:88.72ms
+step:6000/20000 train_loss:3.2972 train_time:531820ms step_avg:88.64ms
+step:6200/20000 train_loss:3.5379 train_time:549822ms step_avg:88.68ms
+step:6400/20000 train_loss:3.3017 train_time:567662ms step_avg:88.70ms
+[STEP][EVALUATION][2026-03-25 18:08:49]
+logs/eval_after_timeout.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:1.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+------------------------
+[STEP][EVALUATION FULL][2026-03-25 18:12:11]
+logs/eval_after_timeout.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:0.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+------------------------
+[STEP][EVALUATION FINAL][2026-03-25 18:23:42]
+logs/eval_final.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:1.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/20000 train_loss:6.9348 train_time:100ms step_avg:100.45ms
+step:2/20000 train_loss:19.6077 train_time:191ms step_avg:95.37ms
+step:3/20000 train_loss:19.7818 train_time:279ms step_avg:92.96ms
+step:4/20000 train_loss:19.7531 train_time:375ms step_avg:93.77ms
+step:5/20000 train_loss:19.8564 train_time:476ms step_avg:95.26ms
+step:6/20000 train_loss:19.6555 train_time:578ms step_avg:96.36ms
+step:7/20000 train_loss:20.0377 train_time:679ms step_avg:96.97ms
+step:8/20000 train_loss:19.9434 train_time:780ms step_avg:97.45ms
+step:9/20000 train_loss:19.6755 train_time:884ms step_avg:98.28ms
+step:10/20000 train_loss:19.9685 train_time:984ms step_avg:98.45ms
+------------------------
+[STEP][FINAL EVAL AFTER 10MIN][2026-03-25 18:27:50]
+logs/eval_after_10min.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+logs/baseline_clean.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:6500 warmup_steps:20 max_wallclock_seconds:0.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:0/6500 val_loss:6.9344 val_bpb:4.1069 train_time:0ms step_avg:0.02ms
+step:1/6500 train_loss:6.9348 train_time:90ms step_avg:90.31ms
+step:2/6500 train_loss:19.6077 train_time:183ms step_avg:91.30ms
+step:3/6500 train_loss:18.3286 train_time:276ms step_avg:92.05ms
+step:4/6500 train_loss:15.0124 train_time:372ms step_avg:93.02ms
+step:5/6500 train_loss:11.5214 train_time:467ms step_avg:93.31ms
+step:6/6500 train_loss:8.9601 train_time:557ms step_avg:92.85ms
+step:7/6500 train_loss:8.1490 train_time:648ms step_avg:92.63ms
+step:8/6500 train_loss:7.6446 train_time:742ms step_avg:92.70ms
+step:9/6500 train_loss:7.2599 train_time:840ms step_avg:93.32ms
+step:10/6500 train_loss:7.1292 train_time:944ms step_avg:94.36ms
+step:200/6500 train_loss:4.7654 train_time:18601ms step_avg:93.01ms
+step:400/6500 train_loss:5.0660 train_time:38247ms step_avg:95.62ms
+step:500/6500 val_loss:4.1515 val_bpb:2.4587 train_time:48286ms step_avg:96.57ms
+step:600/6500 train_loss:4.1059 train_time:58358ms step_avg:97.26ms
+step:800/6500 train_loss:3.6976 train_time:78273ms step_avg:97.84ms
+step:1000/6500 train_loss:3.9307 train_time:98398ms step_avg:98.40ms
+step:1000/6500 val_loss:3.9200 val_bpb:2.3216 train_time:98398ms step_avg:98.40ms
+step:1200/6500 train_loss:3.4175 train_time:117709ms step_avg:98.09ms
+step:1400/6500 train_loss:3.9125 train_time:136175ms step_avg:97.27ms
+logs/baseline_clean.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:6500 warmup_steps:20 max_wallclock_seconds:0.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/6500 train_loss:6.9348 train_time:101ms step_avg:100.74ms
+step:2/6500 train_loss:19.6077 train_time:191ms step_avg:95.67ms
+step:3/6500 train_loss:18.3286 train_time:284ms step_avg:94.78ms
+step:4/6500 train_loss:15.0124 train_time:376ms step_avg:93.89ms
+step:5/6500 train_loss:11.5214 train_time:470ms step_avg:94.02ms
+step:6/6500 train_loss:8.9601 train_time:562ms step_avg:93.69ms
+step:7/6500 train_loss:8.1490 train_time:654ms step_avg:93.44ms
+step:8/6500 train_loss:7.6446 train_time:745ms step_avg:93.16ms
+step:9/6500 train_loss:7.2599 train_time:837ms step_avg:93.05ms
+step:10/6500 train_loss:7.1292 train_time:929ms step_avg:92.90ms
+step:200/6500 train_loss:4.7570 train_time:17868ms step_avg:89.34ms
+step:400/6500 train_loss:4.9804 train_time:36373ms step_avg:90.93ms
+step:600/6500 train_loss:4.1032 train_time:54258ms step_avg:90.43ms
+step:800/6500 train_loss:3.6973 train_time:72636ms step_avg:90.79ms
+step:1000/6500 train_loss:3.9138 train_time:90616ms step_avg:90.62ms
+step:1200/6500 train_loss:3.4192 train_time:108986ms step_avg:90.82ms
+step:1400/6500 train_loss:3.9241 train_time:127728ms step_avg:91.23ms
+step:1600/6500 train_loss:3.6571 train_time:148237ms step_avg:92.65ms
+step:1800/6500 train_loss:3.7709 train_time:169167ms step_avg:93.98ms
+step:2000/6500 train_loss:3.5547 train_time:189186ms step_avg:94.59ms
+step:2200/6500 train_loss:3.7222 train_time:210382ms step_avg:95.63ms
+step:2400/6500 train_loss:3.5639 train_time:230547ms step_avg:96.06ms
+step:2600/6500 train_loss:3.3771 train_time:251702ms step_avg:96.81ms
+step:2800/6500 train_loss:3.5581 train_time:272391ms step_avg:97.28ms
+step:3000/6500 train_loss:3.7054 train_time:293280ms step_avg:97.76ms
+step:3200/6500 train_loss:3.2653 train_time:311844ms step_avg:97.45ms
+step:3400/6500 train_loss:3.6469 train_time:331539ms step_avg:97.51ms
+step:3600/6500 train_loss:3.5298 train_time:353096ms step_avg:98.08ms
+step:3800/6500 train_loss:3.3328 train_time:373803ms step_avg:98.37ms
+step:4000/6500 train_loss:3.3240 train_time:393800ms step_avg:98.45ms
+step:4200/6500 train_loss:3.6078 train_time:412431ms step_avg:98.20ms
+step:4400/6500 train_loss:3.8561 train_time:433168ms step_avg:98.45ms
+step:4600/6500 train_loss:3.5102 train_time:451859ms step_avg:98.23ms
+step:4800/6500 train_loss:3.4965 train_time:471722ms step_avg:98.28ms
+step:5000/6500 train_loss:3.4697 train_time:491990ms step_avg:98.40ms
+step:5200/6500 train_loss:3.2171 train_time:512024ms step_avg:98.47ms
+step:5400/6500 train_loss:3.4725 train_time:531998ms step_avg:98.52ms
+step:5600/6500 train_loss:3.2696 train_time:550062ms step_avg:98.23ms
+step:5800/6500 train_loss:3.4797 train_time:568845ms step_avg:98.08ms
+step:6000/6500 train_loss:3.2581 train_time:586874ms step_avg:97.81ms
+step:6200/6500 train_loss:3.5054 train_time:604196ms step_avg:97.45ms
+step:6400/6500 train_loss:3.3301 train_time:623967ms step_avg:97.49ms
+step:6500/6500 val_loss:3.2590 val_bpb:1.9301 train_time:633535ms step_avg:97.47ms
+peak memory allocated: 1176 MiB reserved: 1362 MiB
+Serialized model: 67224578 bytes
+Code size: 47686 bytes
+Total submission size: 67272264 bytes
+Serialized model int8+zlib: 14863480 bytes (payload:17178912 raw_torch:17223564 payload_ratio:3.91x)
+Total submission size int8+zlib: 14911166 bytes
+/home/ntejha/Main_Projects/parameter-golf/train_gpt.py:1098: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  quant_state = torch.load(io.BytesIO(zlib.decompress(quant_blob_disk)), map_location="cpu")
+final_int8_zlib_roundtrip val_loss:3.2620 val_bpb:1.9319 eval_time:131781ms
+final_int8_zlib_roundtrip_exact val_loss:3.26201551 val_bpb:1.93194932
+------------------------
+[STEP][BASELINE 10MIN STRICT][2026-03-25 20:07:44]
+timeout: failed to run command ‘RUN_ID=baseline_10min’: No such file or directory
+------------------------
+[STEP][BASELINE 10MIN STRICT][2026-03-25 20:08:06]
+logs/baseline_10min.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:20000 warmup_steps:20 max_wallclock_seconds:600.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/20000 train_loss:6.9348 train_time:105ms step_avg:105.20ms
+step:2/20000 train_loss:19.6077 train_time:201ms step_avg:100.27ms
+step:3/20000 train_loss:18.3286 train_time:297ms step_avg:99.14ms
+step:4/20000 train_loss:15.0124 train_time:387ms step_avg:96.73ms
+step:5/20000 train_loss:11.5214 train_time:490ms step_avg:98.03ms
+step:6/20000 train_loss:8.9601 train_time:588ms step_avg:97.95ms
+step:7/20000 train_loss:8.1490 train_time:683ms step_avg:97.54ms
+step:8/20000 train_loss:7.6446 train_time:778ms step_avg:97.30ms
+step:9/20000 train_loss:7.2599 train_time:874ms step_avg:97.10ms
+step:10/20000 train_loss:7.1292 train_time:969ms step_avg:96.87ms
+step:200/20000 train_loss:4.7571 train_time:19528ms step_avg:97.64ms
+step:400/20000 train_loss:4.9478 train_time:38881ms step_avg:97.20ms
+step:600/20000 train_loss:4.1207 train_time:58747ms step_avg:97.91ms
+step:800/20000 train_loss:3.6958 train_time:80086ms step_avg:100.11ms
+step:1000/20000 train_loss:3.8903 train_time:100618ms step_avg:100.62ms
+step:1200/20000 train_loss:3.4071 train_time:121024ms step_avg:100.85ms
+step:1400/20000 train_loss:3.9359 train_time:143875ms step_avg:102.77ms
+step:1600/20000 train_loss:3.6740 train_time:166078ms step_avg:103.80ms
+step:1800/20000 train_loss:3.8261 train_time:187624ms step_avg:104.24ms
+step:2000/20000 train_loss:3.5410 train_time:208850ms step_avg:104.43ms
+step:2200/20000 train_loss:3.7058 train_time:229287ms step_avg:104.22ms
+step:2400/20000 train_loss:3.5658 train_time:249711ms step_avg:104.05ms
+step:2600/20000 train_loss:3.3721 train_time:270901ms step_avg:104.19ms
+step:2800/20000 train_loss:3.5978 train_time:292625ms step_avg:104.51ms
+step:3000/20000 train_loss:3.7477 train_time:313456ms step_avg:104.49ms
+step:3200/20000 train_loss:3.3126 train_time:334003ms step_avg:104.38ms
+step:3400/20000 train_loss:3.6104 train_time:353993ms step_avg:104.12ms
+step:3600/20000 train_loss:3.4986 train_time:374713ms step_avg:104.09ms
+step:3800/20000 train_loss:3.3159 train_time:396257ms step_avg:104.28ms
+step:4000/20000 train_loss:3.2958 train_time:416863ms step_avg:104.22ms
+step:4200/20000 train_loss:3.6318 train_time:438294ms step_avg:104.36ms
+step:4400/20000 train_loss:3.8386 train_time:459383ms step_avg:104.41ms
+step:4600/20000 train_loss:3.5092 train_time:478988ms step_avg:104.13ms
+step:4800/20000 train_loss:3.4263 train_time:500132ms step_avg:104.19ms
+step:5000/20000 train_loss:3.3983 train_time:521193ms step_avg:104.24ms
+step:5200/20000 train_loss:3.1784 train_time:541359ms step_avg:104.11ms
+step:5400/20000 train_loss:3.3357 train_time:562289ms step_avg:104.13ms
+------------------------
+[STEP][EVAL AFTER 10MIN][2026-03-25 20:18:47]
+logs/eval_after_10min.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:0 warmup_steps:20 max_wallclock_seconds:0.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:0/0 val_loss:6.9344 val_bpb:4.1069 train_time:0ms step_avg:0.01ms
+peak memory allocated: 357 MiB reserved: 402 MiB
+Serialized model: 67224578 bytes
+Code size: 47686 bytes
+Total submission size: 67272264 bytes
+Serialized model int8+zlib: 4932565 bytes (payload:17178912 raw_torch:17223564 payload_ratio:3.91x)
+Total submission size int8+zlib: 4980251 bytes
+/home/ntejha/Main_Projects/parameter-golf/train_gpt.py:1098: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  quant_state = torch.load(io.BytesIO(zlib.decompress(quant_blob_disk)), map_location="cpu")
+------------------------
+[STEP][BASELINE CLEAN 10MIN][2026-03-25 20:32:41]
+logs/baseline_10min_clean.txt
+val_bpb:enabled tokenizer_kind=sentencepiece tokenizer_path=./data/tokenizers/fineweb_1024_bpe.model
+train_loader:dataset:fineweb10B_sp1024 train_shards:2
+val_loader:shards pattern=./data/datasets/fineweb10B_sp1024/fineweb_val_*.bin tokens:62021632
+model_params:17059912
+world_size:1 grad_accum_steps:8
+sdp_backends:cudnn=False flash=True mem_efficient=False math=False
+attention_mode:gqa num_heads:8 num_kv_heads:4
+tie_embeddings:True embed_lr:0.05 head_lr:0.0 matrix_lr:0.04 scalar_lr:0.04
+train_batch_tokens:2048 train_seq_len:256 iterations:6000 warmup_steps:20 max_wallclock_seconds:0.000
+seed:1337
+warmup_step:1/20
+warmup_step:2/20
+warmup_step:3/20
+warmup_step:4/20
+warmup_step:5/20
+warmup_step:6/20
+warmup_step:7/20
+warmup_step:8/20
+warmup_step:9/20
+warmup_step:10/20
+warmup_step:11/20
+warmup_step:12/20
+warmup_step:13/20
+warmup_step:14/20
+warmup_step:15/20
+warmup_step:16/20
+warmup_step:17/20
+warmup_step:18/20
+warmup_step:19/20
+warmup_step:20/20
+step:1/6000 train_loss:6.9348 train_time:101ms step_avg:101.24ms
+step:2/6000 train_loss:19.6077 train_time:191ms step_avg:95.32ms
+step:3/6000 train_loss:18.3286 train_time:280ms step_avg:93.20ms
+step:4/6000 train_loss:15.0124 train_time:370ms step_avg:92.42ms
+step:5/6000 train_loss:11.5214 train_time:462ms step_avg:92.38ms
+step:6/6000 train_loss:8.9601 train_time:550ms step_avg:91.75ms
+step:7/6000 train_loss:8.1490 train_time:641ms step_avg:91.52ms
+step:8/6000 train_loss:7.6446 train_time:731ms step_avg:91.40ms
+step:9/6000 train_loss:7.2599 train_time:843ms step_avg:93.71ms
+step:10/6000 train_loss:7.1292 train_time:944ms step_avg:94.37ms
+step:200/6000 train_loss:4.7645 train_time:18089ms step_avg:90.44ms
+step:400/6000 train_loss:5.0311 train_time:36898ms step_avg:92.25ms
+step:600/6000 train_loss:4.0978 train_time:55933ms step_avg:93.22ms
+step:800/6000 train_loss:3.6884 train_time:77488ms step_avg:96.86ms
+step:1000/6000 train_loss:3.8734 train_time:99215ms step_avg:99.22ms
+step:1200/6000 train_loss:3.4120 train_time:120026ms step_avg:100.02ms
+step:1400/6000 train_loss:3.9433 train_time:141228ms step_avg:100.88ms
+step:1600/6000 train_loss:3.6614 train_time:161493ms step_avg:100.93ms
+step:1800/6000 train_loss:3.7957 train_time:181279ms step_avg:100.71ms
+step:2000/6000 train_loss:3.5527 train_time:202885ms step_avg:101.44ms
+step:2200/6000 train_loss:3.7062 train_time:223799ms step_avg:101.73ms
+step:2400/6000 train_loss:3.5179 train_time:243393ms step_avg:101.41ms
+step:2600/6000 train_loss:3.4006 train_time:263806ms step_avg:101.46ms
+step:2800/6000 train_loss:3.5431 train_time:284530ms step_avg:101.62ms
+step:3000/6000 train_loss:3.7132 train_time:303418ms step_avg:101.14ms
+step:3200/6000 train_loss:3.2835 train_time:323813ms step_avg:101.19ms
+step:3400/6000 train_loss:3.6639 train_time:344577ms step_avg:101.35ms
+step:3600/6000 train_loss:3.5381 train_time:362490ms step_avg:100.69ms
+step:3800/6000 train_loss:3.3518 train_time:380263ms step_avg:100.07ms
+step:4000/6000 train_loss:3.3201 train_time:399814ms step_avg:99.95ms
+step:4200/6000 train_loss:3.6117 train_time:419325ms step_avg:99.84ms
+step:4400/6000 train_loss:3.8543 train_time:439015ms step_avg:99.78ms
+step:4600/6000 train_loss:3.4809 train_time:458893ms step_avg:99.76ms
+step:4800/6000 train_loss:3.4718 train_time:478331ms step_avg:99.65ms
+step:5000/6000 train_loss:3.4365 train_time:498092ms step_avg:99.62ms
+step:5200/6000 train_loss:3.2130 train_time:517559ms step_avg:99.53ms
+step:5400/6000 train_loss:3.3836 train_time:538471ms step_avg:99.72ms
+step:5600/6000 train_loss:3.1968 train_time:559039ms step_avg:99.83ms
+step:5800/6000 train_loss:3.3788 train_time:578832ms step_avg:99.80ms
+step:6000/6000 train_loss:3.2629 train_time:599518ms step_avg:99.92ms
+step:6000/6000 val_loss:3.2724 val_bpb:1.9381 train_time:599518ms step_avg:99.92ms
+peak memory allocated: 357 MiB reserved: 402 MiB
+Serialized model: 67224578 bytes
+Code size: 47686 bytes
+Total submission size: 67272264 bytes
+Serialized model int8+zlib: 14840052 bytes (payload:17178912 raw_torch:17223564 payload_ratio:3.91x)
+Total submission size int8+zlib: 14887738 bytes
+/home/ntejha/Main_Projects/parameter-golf/train_gpt.py:1098: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  quant_state = torch.load(io.BytesIO(zlib.decompress(quant_blob_disk)), map_location="cpu")
+final_int8_zlib_roundtrip val_loss:3.2754 val_bpb:1.9399 eval_time:628403ms
+final_int8_zlib_roundtrip_exact val_loss:3.27544404 val_bpb:1.93990246
